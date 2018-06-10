@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {BrowserRouter,Route,Router} from 'react-router-dom';
 import LeftNavigator from './basic/leftNavigator';
+import TopNavigator from './basic/topNavigator';
 
-const home = ()=> <div>Home</div>
 class App extends Component{
     render(){
         return (
-            <div>
+            <div className="main-container">
                     <LeftNavigator />
+                    <TopNavigator />
                 <BrowserRouter>
-                    <Route path='/' component={home} />
                 </BrowserRouter>
                 </div>
         )

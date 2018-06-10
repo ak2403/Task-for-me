@@ -10,25 +10,22 @@ export default class MenuExampleVerticalDropdown extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu secondary vertical>
+      <Menu secondary vertical className='left-navigator'>
         <Menu.Item
-          name='account'
+          name='Projects'
           active={activeItem === 'account'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          name='settings'
+          name='Tasks'
           active={activeItem === 'settings'}
           onClick={this.handleItemClick}
         />
-        <Dropdown item text='Display Options'>
-          <Dropdown.Menu>
-            <Dropdown.Header>Text Size</Dropdown.Header>
-            <Dropdown.Item>Small</Dropdown.Item>
-            <Dropdown.Item>Medium</Dropdown.Item>
-            <Dropdown.Item>Large</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <Menu.Item
+          name='Settings'
+          active={activeItem === 'settings'}
+          onClick={this.handleItemClick}
+        />
       </Menu>
     )
   }
