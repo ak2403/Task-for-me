@@ -1,7 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Layouts from './layoutComponent';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
 import 'semantic-ui-css/semantic.min.css';
 import './style.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const middleware = applyMiddleware(thunk);
+const createdStore = createStore(middleware);
+
+ReactDOM.render(
+    <Provider store={createdStore}>
+        <Layouts />
+    </Provider>, document.getElementById('root'));
