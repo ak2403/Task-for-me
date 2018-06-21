@@ -23,3 +23,12 @@ export const setToken = () => {
         type: 'setToken'
     }
 }
+
+export const logout = () => {
+    return {
+        type: 'loggedIn',
+        payload: {
+            isLogged: false
+        }
+    }
+}

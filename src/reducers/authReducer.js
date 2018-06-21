@@ -5,7 +5,8 @@ import jwt from 'jsonwebtoken';
 const initialState = {
     isAuthenicated: null,
     authUser: '',
-    errorMsg: ''
+    errorMsg: '',
+    project: ''
 };
 
 export default function authReducer(state = initialState, action) {
@@ -26,7 +27,8 @@ export default function authReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 isAuthenicated: !isEmpty(decodeToken),
                 authUser: decodeToken ? decodeToken.authName : '',
-                errorMsg: !decodeToken && payload.error
+                errorMsg: !decodeToken && payload.error,
+                project: decodeToken && payload.project
             });
 
         case 'setToken':
