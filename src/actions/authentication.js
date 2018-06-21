@@ -8,7 +8,12 @@ export const registerAction = (data) => {
 
 export const loginAction = (data) => {
     return (dispatch) => {
-        debugger
-        axios.post('/api/login', data);
+        axios.post('/api/login', data)
+            .then(res => {
+                dispatch({
+                    type: 'loggedIn',
+                    payload: res.data
+                });
+            });
     }
 }

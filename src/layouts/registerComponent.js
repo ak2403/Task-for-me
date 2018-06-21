@@ -62,4 +62,4 @@ const mapStateToProps = (props) => {
     return {}
 }
 
-export default connect(mapDispatchToProps, mapStateToProps)(RegisterComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);
