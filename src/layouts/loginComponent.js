@@ -14,6 +14,12 @@ class LoginComponent extends Component {
         this.removeMsg = this.removeMsg.bind(this);
     }
 
+    componentWillMount() {
+        if (this.props.isAuthenicated) {
+            this.props.history.push('/projects');
+        }
+    }
+
     removeMsg(e) {
         this.setState({
             errorMsg: ''

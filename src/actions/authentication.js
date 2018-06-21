@@ -17,3 +17,9 @@ export const loginAction = (data) => {
             });
     }
 }
+
+export const setToken = () => {
+    return {
+        type: 'setToken'
+    }
+}

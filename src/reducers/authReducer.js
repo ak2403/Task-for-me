@@ -13,12 +13,14 @@ export default function authReducer(state = initialState, action) {
         case 'loggedIn':
             let { payload } = action;
             let decodeToken;
-            
+
             if (payload.isLogged) {
-                axios.defaults.headers.common['Authorization'] = `Bearer ${payload.auth}`;
+                axios.defaults.headers.common['Authorization'] = payload.auth;
+                localStorage.setItem('AuthKey', payload.auth);
                 decodeToken = jwt.decode(payload.auth);
             } else {
                 decodeToken = '';
+                localStorage.removeItem('AuthKey');
             }
 
             return Object.assign({}, state, {
@@ -26,6 +28,16 @@ export default function authReducer(state = initialState, action) {
                 authUser: decodeToken ? decodeToken.authName : '',
                 errorMsg: !decodeToken && payload.error
             });
+
+        case 'setToken':
+            let getToken = localStorage.getItem('AuthKey'),
+                extractToken = getToken ? jwt.decode(getToken) : '';
+
+            return Object.assign({}, state, {
+                isAuthenicated: !isEmpty(extractToken),
+                authUser: extractToken ? extractToken.authName : '',
+            });
+
         default: return state;
     }
 }
