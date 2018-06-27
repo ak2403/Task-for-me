@@ -6,7 +6,7 @@ const initialState = {
     isAuthenicated: null,
     authUser: '',
     errorMsg: '',
-    project: ''
+    project: "5b27870e6e9052269417b084"
 };
 
 export default function authReducer(state = initialState, action) {
@@ -38,6 +38,7 @@ export default function authReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 isAuthenicated: !isEmpty(extractToken),
                 authUser: extractToken ? extractToken.authName : '',
+                project: extractToken ? extractToken.project : ''
             });
 
         default: return state;

@@ -23,3 +23,19 @@ body{
 .left-nav-header{
     height: 50px;
 }
+.add-project-leaf{
+    width: 250px;
+    height: 150px;
+    border: 1px dashed #E0E0E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add-icon{ 
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50px;
+    background-color: #e0e0e0 !important;
+    line-height: 40px;
+    cursor: pointer;
+}
