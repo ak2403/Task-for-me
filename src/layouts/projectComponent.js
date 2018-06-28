@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Icon, Modal, Form } from 'semantic-ui-react';
-import { addProject } from '../actions/projectProcess';
+import { addProject, getSubProject } from '../actions/projectProcess';
 
 class projectComponent extends Component {
     constructor(props) {
@@ -16,6 +16,12 @@ class projectComponent extends Component {
         }
         this.addNewProject = this.addNewProject.bind(this);
         this.onChange = this.onChange.bind(this);
+    }
+
+    componentWillMount() {
+        this.props.getSubProject({
+            name: this.props.authUser
+        });
     }
 
     onChange(e) {
@@ -33,12 +39,12 @@ class projectComponent extends Component {
     }
 
     render() {
-        let sub_project_list_DOM = '';
-
-        if(this.props.project){
-            for(let key in this.props.project.subProject){
-                sub_project_list_DOM+=<div className="add-project-leaf">{this.props.project.subProject[key].name}</div>
-            }
+        let sub_project_list_DOM = [];
+        
+        if (this.props.subProject) {
+            this.props.subProject.map(element => {
+                sub_project_list_DOM.push(<div className="add-project-leaf">{element.name}</div>);
+            })
         }
 
         return (
@@ -75,7 +81,8 @@ class projectComponent extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        addProject: addProject
+        addProject: addProject,
+        getSubProject: getSubProject
     }, dispatch)
 }
 
@@ -84,7 +91,7 @@ const mapStateToProps = (props) => {
         isAuthenicated: props.authentication.isAuthenicated,
         errorMsg: props.authentication.errorMsg,
         authUser: props.authentication.authUser,
-        project: props.authentication.project
+        subProject: props.projectProps.subProject
     }
 }
 

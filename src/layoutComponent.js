@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RegisterComponent from './layouts/registerComponent';
 import LoginComponent from './layouts/loginComponent';
-import App from './App';
+import ProjectComponent from './layouts/projectComponent';
+import TaskComponent from './layouts/taskComponent';
+import CommonLayout from './layouts/CommonLayout';
 import { setToken } from './actions/authentication';
 import RequireAuth from './requireAuth';
 
@@ -16,7 +18,7 @@ class layoutComponent extends Component {
     componentWillMount() {
         this.props.setToken();
     }
-    
+
     render() {
         return (
             <div>
@@ -24,9 +26,12 @@ class layoutComponent extends Component {
                     <Switch>
                         <Route exact path="/register" component={RegisterComponent} />
                         <Route path="/login" component={LoginComponent} />
-                        <RequireAuth>
-                            <Route path="/projects" component={App} />
-                        </RequireAuth>
+                        <CommonLayout>
+                            <Switch>
+                                <Route exact path="/projects" component={ProjectComponent} />
+                                <Route path="/tasks" component={ProjectComponent} />
+                            </Switch>
+                        </CommonLayout>
                     </Switch>
                 </BrowserRouter>
             </div >

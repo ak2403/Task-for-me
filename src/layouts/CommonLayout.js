@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Router } from 'react-router-dom';
-import LeftNavigator from './basic/leftNavigator';
-import TopNavigator from './basic/topNavigator';
-import ProjectComponent from './layouts/projectComponent';
+import { Route, Redirect } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import LeftNavigator from '../basic/leftNavigator';
+import TopNavigator from '../basic/topNavigator';
 
-class App extends Component {
+class CommonLayout extends Component {
+    constructor(props) {
+        super();
+    }
+
     render() {
+        debugger
         return (
             <div className="main-container">
                 <div className="left-container">
@@ -14,7 +20,6 @@ class App extends Component {
                 <div className="right-container">
                     <TopNavigator />
                     <div>
-                        <ProjectComponent />
                     </div>
                 </div>
             </div>
@@ -22,4 +27,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default CommonLayout;
