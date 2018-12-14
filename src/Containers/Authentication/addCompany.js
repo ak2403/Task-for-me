@@ -21,7 +21,9 @@ class AddCompany extends Component {
     }
 
     onSubmit = () => {
-        this.props.addUserCompany(this.state.company_data)
+        let { company_data } = this.state
+        company_data['created_by'] = this.props.user_info._id
+        this.props.addUserCompany(company_data)
     }
 
     render() {
@@ -39,4 +41,11 @@ class AddCompany extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({ addUserCompany }, dispatch)
 
-export default connect(null, mapDispatchToProps)(AddCompany)
+const mapStateToProps = props => {
+    let { Authentication } = props
+    return {
+        user_info: Authentication.user_info
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCompany)

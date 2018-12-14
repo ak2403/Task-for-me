@@ -16,10 +16,17 @@ const AuthenticationReducer = (state = initialState, action) => {
             })
 
         case authenticationTypes.LOGIN_DONE:
+            localStorage.setItem('authToken', action.token_data)
             return Object.assign({}, state, {
                 is_login_completed: true,
                 user_info: action.payload
             })
+
+        case authenticationTypes.ADDED_COMPANY:
+            return Object.assign({}, state, {
+                user_info: action.payload
+            })
+        
 
         default:
             return state

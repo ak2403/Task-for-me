@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { loginUser } from '../../Redux/Actions/authenticationActions'
 
-class LoginForm extends Component{
+class LoginForm extends Component {
     state = {
         login_data: {
             useremail: '',
@@ -26,10 +27,10 @@ class LoginForm extends Component{
     shouldComponentUpdate = nextProps => {
         let { user_info, is_login_completed } = nextProps
 
-        if(is_login_completed){
-            if(user_info.hasOwnProperty('company')){
+        if (is_login_completed) {
+            if (user_info.hasOwnProperty('company')) {
                 this.props.history.push('/signup')
-            }else{
+            } else {
                 this.props.history.push('/add-company')
             }
         }
@@ -37,7 +38,7 @@ class LoginForm extends Component{
         return true
     }
 
-    render(){
+    render() {
         return (
             <div>
                 <input onChange={e => this.changeValue('useremail', e.target.value)} />
@@ -58,4 +59,4 @@ const mapStateToProps = props => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm))

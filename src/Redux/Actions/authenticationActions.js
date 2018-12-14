@@ -20,7 +20,7 @@ export const addUserCompany = data => {
         let getResponse = await postAPI.addUserCompanyCall(data)
         if(getResponse.status === 200){
             dispatch({
-                type: authenticationTypes.ADD_COMPANY,
+                type: authenticationTypes.ADDED_COMPANY,
                 payload: getResponse.data
             })
         }else{
@@ -35,8 +35,20 @@ export const loginUser = data => {
         if(getResponse.status === 200){
             dispatch({
                 type: authenticationTypes.LOGIN_DONE,
-                payload: getResponse.data
+                payload: getResponse.data,
+                token_data: getResponse.token
             })
         }
     }
+}
+
+export const logoutUser = () => {
+    return async dispatch => {
+        let getResponse = await postAPI.logoutUserCall()
+        if(getResponse.status === 200){
+            dispatch({
+                type: authenticationTypes.LOGOUT
+            })
+        }
+    }   
 }

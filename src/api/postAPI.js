@@ -17,7 +17,7 @@ export const signUpUserCall = data => {
 }
 
 export const addUserCompanyCall = data => {
-    return axios.post(`${API_URL}/api/add_company`, data)
+    return axios.post(`${API_URL}/api/add-company`, data)
         .then(response => {
             return {
                 status: 200,
@@ -36,13 +36,26 @@ export const loginUserCall = data => {
             let user_data = jwt.decode(token_data)
             return {
                 status: 200,
-                data: user_data
+                data: user_data,
+                token: token_data
             }
         })
         .catch(err => {
             return {
                 status: 400,
                 error_message: err.response.data
+            }
+        })
+}
+
+export const logoutUserCall = () => {
+    return axios.post(`${API_URL}/api/logout`)
+        .then(response => {
+            debugger
+        })
+        .catch(err => {
+            return {
+                status: 400
             }
         })
 }
