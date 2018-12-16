@@ -29,7 +29,7 @@ class LoginForm extends Component {
 
         if (is_login_completed) {
             if (user_info.hasOwnProperty('company')) {
-                this.props.history.push('/signup')
+                this.props.history.push('/issues')
             } else {
                 this.props.history.push('/add-company')
             }

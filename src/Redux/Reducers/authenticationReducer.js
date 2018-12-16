@@ -4,7 +4,8 @@ let initialState = {
     is_login_completed: false,
     is_signup_completed: false,
     user_info: {},
-    sign_user_id: ''
+    sign_user_id: '',
+    is_user_logout: false
 }
 
 const AuthenticationReducer = (state = initialState, action) => {
@@ -26,7 +27,16 @@ const AuthenticationReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 user_info: action.payload
             })
-        
+
+        case authenticationTypes.UNAUTHORIZATED:
+            return Object.assign({}, state, {
+                is_user_logout: true
+            })
+
+        case authenticationTypes.RESET_SETTINGS:
+            return Object.assign({}, state, {
+                is_user_logout: false
+            })
 
         default:
             return state

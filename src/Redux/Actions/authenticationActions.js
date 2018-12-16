@@ -1,5 +1,6 @@
 import * as authenticationTypes from '../Types/authenticationTypes'
 import * as postAPI from '../../api/postAPI'
+import * as deleteAPI from '../../api/deleteAPI'
 
 export const signUpUser = data => {
     return async dispatch => {
@@ -44,11 +45,21 @@ export const loginUser = data => {
 
 export const logoutUser = () => {
     return async dispatch => {
-        let getResponse = await postAPI.logoutUserCall()
+        let getResponse = await deleteAPI.logoutUserCall()
         if(getResponse.status === 200){
             dispatch({
                 type: authenticationTypes.LOGOUT
             })
+        }else{
+            dispatch({
+                type: authenticationTypes.UNAUTHORIZATED
+            })
         }
     }   
+}
+
+export const resetSettings = () => {
+    return {
+        type: authenticationTypes.RESET_SETTINGS
+    }
 }

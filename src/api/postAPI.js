@@ -1,10 +1,9 @@
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
-
-const API_URL = 'http://localhost:5000'
+import * as configAPI from './config'
 
 export const signUpUserCall = data => {
-    return axios.post(`${API_URL}/api/registration`, data)
+    return axios.post(`${configAPI.API_URL}/api/registration`, data)
         .then(response => {
             return {
                 status: 200,
@@ -17,7 +16,7 @@ export const signUpUserCall = data => {
 }
 
 export const addUserCompanyCall = data => {
-    return axios.post(`${API_URL}/api/add-company`, data)
+    return axios.post(`${configAPI.API_URL}/api/add-company`, data)
         .then(response => {
             return {
                 status: 200,
@@ -30,7 +29,7 @@ export const addUserCompanyCall = data => {
 }
 
 export const loginUserCall = data => {
-    return axios.post(`${API_URL}/api/login`, data)
+    return axios.post(`${configAPI.API_URL}/api/login`, data)
         .then(response => {
             let token_data = response.data.token
             let user_data = jwt.decode(token_data)
@@ -44,18 +43,6 @@ export const loginUserCall = data => {
             return {
                 status: 400,
                 error_message: err.response.data
-            }
-        })
-}
-
-export const logoutUserCall = () => {
-    return axios.post(`${API_URL}/api/logout`)
-        .then(response => {
-            debugger
-        })
-        .catch(err => {
-            return {
-                status: 400
             }
         })
 }
