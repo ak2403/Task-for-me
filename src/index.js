@@ -1,23 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Layouts from './layout/main';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
-import reducers from './layout/redux/reducers/index';
-import 'antd/dist/antd.css';
-import './scss/style.css';
-
-const client = new ApolloClient({})
+import React from 'react'
+import ReactDOM from 'react-dom'
+import thunk from 'redux-thunk'
+import { Provider } from 'react-redux'
+import { applyMiddleware, createStore } from 'redux'
+import RouteTree from './containers/routes'
+import Reducers from './redux/reducers'
 
 const middleware = applyMiddleware(thunk);
-const createdStore = createStore(reducers, middleware);
+const store = createStore(Reducers, middleware);
 
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <Provider store={createdStore}>
-            <Layouts />
-        </Provider>
-    </ApolloProvider>, document.getElementById('root'));
+        <Provider store={store}>
+            <RouteTree />
+        </Provider>, document.getElementById('root'));
