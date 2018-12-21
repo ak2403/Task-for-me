@@ -8,6 +8,8 @@ export const getProjects = () => {
             debugger
         })
         .catch(err => {
-            debugger
+            return {
+                status: 400
+            }
         })
 }

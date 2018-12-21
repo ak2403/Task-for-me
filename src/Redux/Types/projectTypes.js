@@ -1,0 +1,1 @@
+export const GET_PROJECT = 'get the list of projects of the user'
