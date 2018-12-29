@@ -3,7 +3,7 @@ import AuthenticationReducer from './authenticationReducer'
 import ProjectReducer from './projectReducer'
 
 const Reducers = combineReducers({
-    Authentication: AuthenticationReducer,
+    authentication: AuthenticationReducer,
     project: ProjectReducer
 })
 

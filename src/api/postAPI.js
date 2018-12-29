@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { API_URL, Basic_header, Authorization_header } from './config'
 import jwt from 'jsonwebtoken'
 import * as configAPI from './config'
 
@@ -52,7 +51,7 @@ export const loginUserCall = data => {
 }
 
 export const addProjectCall = data => {
-    return axios.post(`${configAPI.API_URL}/projects/add-project`, data, configAPI.AuthorizatedHeader)
+    return axios.post(`${configAPI.API_URL}/projects/add-project`, data)
         .then(res => {
             debugger
         })

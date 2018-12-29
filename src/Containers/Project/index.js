@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getProjects, addProject } from '../../Redux/Actions/projectActions'
+// import { getProjects, addProject } from '../../Redux/Actions/projectActions'
 
 class ProjectComponent extends Component{
     state = {
@@ -34,7 +34,10 @@ class ProjectComponent extends Component{
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ getProjects, addProject }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ 
+    // getProjects, 
+    // addProject
+ }, dispatch)
 
 const mapStateToProps = props => {
     let { project } = props
