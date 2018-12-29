@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './Containers/main';
+import RouteTree from './Containers/main';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
-import reducers from './Redux/Reducers';
+import Reducers from './Redux/Reducers';
 import './Style/lib.css';
 import './Style/style.css';
 
