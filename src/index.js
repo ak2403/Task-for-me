@@ -9,9 +9,9 @@ import './Style/lib.css';
 import './Style/style.css';
 
 const middleware = applyMiddleware(thunk);
-const createdStore = createStore(reducers, middleware);
+const store = createStore(Reducers, middleware);
 
 ReactDOM.render(
-        <Provider store={createdStore}>
-            <Main />
+        <Provider store={store}>
+            <RouteTree />
         </Provider>, document.getElementById('root'));

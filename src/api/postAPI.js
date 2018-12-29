@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { API_URL, Basic_header, Authorization_header } from './config'
 import jwt from 'jsonwebtoken'
 import * as configAPI from './config'
 

@@ -1,12 +1,9 @@
 import axios from 'axios'
-import * as configAPI from './config'
+import { API_URL, userID, Authorization_header } from './config'
 
-export const getProjectsCall = () => {
-    return axios.get(`${configAPI.API_URL}/projects`, {
-        headers: {
-            Authorization: `Bearer `
-        }
-    })
+export const getProjects = () => {
+    console.log(Authorization_header, userID)
+    return axios.get(`${API_URL}/projects/${userID}`, Authorization_header)
         .then(response => {
             debugger
         })
