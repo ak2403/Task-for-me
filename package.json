@@ -15,7 +15,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "styles": "nodemon -e scss -x node-sass --include-path scss src/Style/style.scss src/Style/style.css",
-    "client": "concurrently \"npm run start\" \"npm run styles\""
+    "lib": "nodemon -e scss -x node-sass --include-path scss src/Style/lib.scss src/Style/lib.css",
+    "client": "concurrently \"npm run start\" \"npm run styles\" \"npm run lib\""
   },
   "devDependencies": {
     "axios": "^0.18.0",

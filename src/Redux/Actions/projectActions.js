@@ -8,3 +8,9 @@ export const getProjects = () => {
         let getResponse = await getAPI.getProjectsCall()
     }
 }
+
+export const addProject = data => {
+    return async dispatch => {
+        let getResponse = await postAPI.addProjectCall(data)
+    }
+}

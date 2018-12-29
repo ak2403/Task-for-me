@@ -14,7 +14,7 @@ class DashboardView extends Component{
 const mapDispatchToProps = dispatch => bindActionCreators({ logoutUser }, dispatch)
 
 const mapStateToProps = props => {
-    let { Authentication } = props
+    let { authentication } = props
     return {
         
     }

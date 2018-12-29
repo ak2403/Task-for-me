@@ -16,11 +16,14 @@ export const signUpUserCall = data => {
 }
 
 export const addUserCompanyCall = data => {
-    return axios.post(`${configAPI.API_URL}/api/add-company`, data)
+    return axios.post(`${configAPI.API_URL}/company/${configAPI.userID}/add-company`, data)
         .then(response => {
+            let token_data = response.data.token
+            let user_data = jwt.decode(token_data)
             return {
                 status: 200,
-                data: response.data
+                data: user_data,
+                token: token_data
             }
         })
         .catch(err => {
@@ -44,5 +47,15 @@ export const loginUserCall = data => {
                 status: 400,
                 error_message: err.response.data
             }
+        })
+}
+
+export const addProjectCall = data => {
+    return axios.post(`${configAPI.API_URL}/projects/add-project`, data, configAPI.AuthorizatedHeader)
+        .then(res => {
+            debugger
+        })
+        .catch(err => {
+            debugger
         })
 }

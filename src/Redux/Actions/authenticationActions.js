@@ -1,6 +1,7 @@
 import * as authenticationTypes from '../Types/authenticationTypes'
 import * as postAPI from '../../api/postAPI'
 import * as deleteAPI from '../../api/deleteAPI'
+import * as configAPI from '../../api/config';
 
 export const signUpUser = data => {
     return async dispatch => {
@@ -16,13 +17,25 @@ export const signUpUser = data => {
     }
 }
 
+export const retrieveCall = () => {
+    return async dispatch => {
+        let getResponse = await configAPI.retrieveToken()
+        dispatch({
+            type: authenticationTypes.RETRIEVE_TOKEN,
+            payload: getResponse.data
+        })
+    }
+}
+
 export const addUserCompany = data => {
     return async dispatch => {
         let getResponse = await postAPI.addUserCompanyCall(data)
         if(getResponse.status === 200){
+            let getUserDetails = await configAPI.retrieveToken(getResponse.token)
             dispatch({
                 type: authenticationTypes.ADDED_COMPANY,
-                payload: getResponse.data
+                payload: getResponse.data,
+                token_data: getResponse.token
             })
         }else{
 
@@ -34,6 +47,7 @@ export const loginUser = data => {
     return async dispatch => {
         let getResponse = await postAPI.loginUserCall(data)
         if(getResponse.status === 200){
+            let getUserDetails = await configAPI.retrieveToken(getResponse.token)
             dispatch({
                 type: authenticationTypes.LOGIN_DONE,
                 payload: getResponse.data,

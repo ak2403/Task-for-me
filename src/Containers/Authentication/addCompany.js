@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Input from '../../Components/input/text-input'
+import Button from '../../Components/button'
 import { addUserCompany } from '../../Redux/Actions/authenticationActions'
 
 class AddCompany extends Component {
@@ -20,7 +22,8 @@ class AddCompany extends Component {
         })
     }
 
-    onSubmit = () => {
+    onSubmit = (e) => {
+        e.preventDefault()
         let { company_data } = this.state
         company_data['created_by'] = this.props.user_info._id
         this.props.addUserCompany(company_data)
@@ -28,13 +31,21 @@ class AddCompany extends Component {
 
     render() {
         return <div>
-            <div>
-                <input onChange={e => this.changeValue('name', e.target.value)} />
-            </div>
-            <div>
-                <input onChange={e => this.changeValue('location', e.target.value)} />
-            </div>
-            <button onClick={this.onSubmit}>Next</button>
+            <form onSubmit={this.onSubmit}>
+                <Input
+                    type="text"
+                    text="Name of the company"
+                    placeholder="Enter the company name"
+                    onChange={e => this.changeValue('name', e.target.value)} />
+
+                <Input
+                    type="text"
+                    text="Location of the company"
+                    placeholder="Enter the company location"
+                    onChange={e => this.changeValue('location', e.target.value)} />
+
+                <button onClick={this.onSubmit}>Next</button>
+            </form>
         </div>
     }
 }
@@ -42,9 +53,9 @@ class AddCompany extends Component {
 const mapDispatchToProps = dispatch => bindActionCreators({ addUserCompany }, dispatch)
 
 const mapStateToProps = props => {
-    let { Authentication } = props
+    let { authentication } = props
     return {
-        user_info: Authentication.user_info
+        user_info: authentication.user_info
     }
 }
 

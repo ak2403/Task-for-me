@@ -5,7 +5,8 @@ let initialState = {
     is_signup_completed: false,
     user_info: {},
     sign_user_id: '',
-    is_user_logout: false
+    is_user_logout: false,
+    redirect_page: ''
 }
 
 const AuthenticationReducer = (state = initialState, action) => {
@@ -17,7 +18,6 @@ const AuthenticationReducer = (state = initialState, action) => {
             })
 
         case authenticationTypes.LOGIN_DONE:
-            localStorage.setItem('authToken', action.token_data)
             return Object.assign({}, state, {
                 is_login_completed: true,
                 user_info: action.payload
@@ -33,9 +33,15 @@ const AuthenticationReducer = (state = initialState, action) => {
                 is_user_logout: true
             })
 
+        case authenticationTypes.RETRIEVE_TOKEN:
+            return Object.assign({}, state, {
+                user_info: action.payload || {}
+            })
+
         case authenticationTypes.RESET_SETTINGS:
             return Object.assign({}, state, {
-                is_user_logout: false
+                is_user_logout: false,
+                is_signup_completed: false
             })
 
         default:

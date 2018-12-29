@@ -14,12 +14,18 @@ class ProtectedRoute extends Component {
     }
 
     shouldComponentUpdate = nextProps => {
-        let { is_user_logout } = nextProps
+        let { is_user_logout, user_info } = nextProps
 
         if (is_user_logout) {
             localStorage.removeItem('authToken')
             this.props.history.push('/login')
             this.props.resetSettings()
+        }
+
+        if(user_info.hasOwnProperty('is_company_added')){
+            if(!user_info.is_company_added && (this.props.history.identify && this.props.history.identify !== 'add-company')){
+                this.props.history.push('/company/add-company')
+            }
         }
 
         return true
@@ -36,9 +42,10 @@ class ProtectedRoute extends Component {
 const mapDispatchToProps = dispatch => bindActionCreators({ resetSettings }, dispatch)
 
 const mapStateToProps = props => {
-    let { Authentication } = props
+    let { authentication } = props
     return {
-        is_user_logout: Authentication.is_user_logout
+        is_user_logout: authentication.is_user_logout,
+        user_info: authentication.user_info
     }
 }
 
