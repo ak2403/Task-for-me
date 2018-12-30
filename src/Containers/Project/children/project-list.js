@@ -5,7 +5,7 @@ import { getProjects } from '../../../Redux/Actions/project-actions'
 
 class ProjectList extends Component {
     state = {
-        
+
     }
 
     componentDidMount() {
@@ -13,8 +13,16 @@ class ProjectList extends Component {
     }
 
     render() {
-        return <div>
-            Project
+        let {projects}=this.props
+        
+        return <div className="content-elements">
+            {projects.length !== 0 ? <div className="project-list-container">
+                {projects.map(project => {
+                    return <div className="project-list">
+                        <h4>{project.name}</h4>
+                        </div>
+                })}
+            </div> : ''}
         </div>
     }
 }

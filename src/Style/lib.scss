@@ -21,6 +21,18 @@
         border: 1px solid #adadad;
         box-shadow: 4px 4px 5px #ccc;
     }
+    select{
+        margin-top: 10px;
+        width: 100%;
+        height: 30px;
+        padding-left: 20px;
+        border-radius: 5px;
+        border: 1px solid #e0e0e0;
+    }
+    select:focus {
+        border: 1px solid #adadad;
+        box-shadow: 4px 4px 5px #ccc;
+    }
 }
 .rui-side-nav{
     width: 100%;
@@ -32,4 +44,33 @@
     width: 100%;
     height: 50px;
     border-bottom: 1px solid #e0e0e0;
+}
+.rui-modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    .rui-model-overlay{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: black;
+        opacity: 0.6;
+    }
+    .rui-modal-content{
+        width: 60%;
+        height: 70%;
+        padding: 40px 50px;
+        z-index: 1;
+        background: #fff;
+        border-radius: 5px;
+
+    }
 }

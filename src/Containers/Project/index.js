@@ -3,14 +3,29 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Input from '../../Components/input/text-input'
 import Button from '../../Components/button'
+import Modal from '../../Components/modal'
 import ProjectList from './children/project-list'
-import { getProjects, addProject } from '../../Redux/Actions/project-actions'
+import ProjectAddition from './children/project-addition'
 
 class ProjectComponent extends Component {
     state = {
         project_data: {
-            name: ''
+            name: '',
+            toggleAdd: false
         }
+    }
+
+    shouldComponentUpdate = nextProps => {
+        let { toggleAdd } = this.state
+        let { is_project_added } = nextProps
+
+        if (is_project_added && toggleAdd) {
+            this.setState({
+                toggleAdd: false
+            })
+        }
+
+        return true
     }
 
     changeValue = (name, value) => {
@@ -26,33 +41,32 @@ class ProjectComponent extends Component {
         this.props.addProject(this.state.project_data)
     }
 
-    render() {
-        let { projects } = this.props
-        console.log(projects)
-        return <div>
-            <ProjectList />
-            <form onSubmit={this.onSubmit}>
-                <Input
-                    type="text"
-                    text="Project Name"
-                    placeholder="Enter the project"
-                    onChange={e => this.changeValue('name', e.target.value)} />
+    toggleModal = () => this.setState({ toggleAdd: !this.state.toggleAdd })
 
-                <Button type="submit" text="Add Project" />
-            </form>
-        </div>
+    render() {
+        let { toggleAdd } = this.state
+        let { projects } = this.props
+
+        return <React.Fragment>
+            <div className="content-header">
+                <h1>Projects</h1>
+                <Button className="add-project" text="Add New Project" onClick={this.toggleModal} />
+            </div>
+            <ProjectList />
+
+            {toggleAdd ? <Modal title="Add Project" content={<ProjectAddition />} closeModal={this.toggleModal} /> : ''}
+        </React.Fragment>
     }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    getProjects,
-    addProject
 }, dispatch)
 
 const mapStateToProps = props => {
     let { project } = props
     return {
-        projects: project.projects
+        projects: project.projects,
+        is_project_added: project.is_project_added
     }
 }
 

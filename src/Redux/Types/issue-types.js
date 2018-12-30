@@ -1,0 +1,1 @@
+export const ADDED_ISSUE = 'added a new issue'

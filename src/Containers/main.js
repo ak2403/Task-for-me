@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import CommonRoute from './Routes/CommonRoute';
@@ -31,6 +31,7 @@ class MainRoute extends Component {
                         <ProtectedRoute exact path='/dashboard' component={DashboardView} />
                         <ProtectedRoute exact path='/projects' component={ProjectView} />
                         <ProtectedRoute exact path='/issues' component={IssueView} />
+                        <Redirect to="/dashboard" />
                     </Switch>
                 </div>
             </BrowserRouter>
@@ -48,3 +49,38 @@ const mapStateToProps = props => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainRoute)
+
+// import React, { Component } from 'react';
+// import Home from './Home.js';
+// import SearchResultPage from './SearchResularPage.js';
+// import { Switch, Route, BrowserRouter } from 'react-router-dom'
+
+
+// class App extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       name: 'siva',
+//       searchText: 'sivaprakash'
+//     };
+//     //this.handleClick = this.handleClick.bind(this);
+//   }
+//   render() {
+//     return (
+//       <div className="shopping-list">
+
+//         <BrowserRouter>
+
+//           <Switch>
+//             <Route exact path='/' component={Home} />
+//             <Route path='/SearchResultPage' render={() =>
+//               <SearchResultPage SearchText={this.state.searchText} />
+//             } />
+//           </Switch>
+//         </BrowserRouter>
+//       </div>
+//     );
+//   }
+// }
+
+// export default App;
