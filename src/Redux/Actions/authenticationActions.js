@@ -1,4 +1,4 @@
-import * as authenticationTypes from '../Types/authenticationTypes'
+import * as authenticationTypes from '../Types/authentication-types'
 import * as postAPI from '../../api/postAPI'
 import * as deleteAPI from '../../api/deleteAPI'
 import * as configAPI from '../../api/config';

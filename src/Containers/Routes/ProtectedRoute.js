@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { resetSettings } from '../../Redux/Actions/authenticationActions'
+import SideBarNav from '../../Components/navigation/side-bar-nav'
+import Header from '../../Components/header'
+import { resetSettings, logoutUser } from '../../Redux/Actions/authenticationActions'
 
 class ProtectedRoute extends Component {
 
@@ -22,9 +24,11 @@ class ProtectedRoute extends Component {
             this.props.resetSettings()
         }
 
-        if(user_info.hasOwnProperty('is_company_added')){
-            if(!user_info.is_company_added && (this.props.history.identify && this.props.history.identify !== 'add-company')){
+        if (user_info.hasOwnProperty('is_company_added')) {
+            if (!user_info.is_company_added && (this.props.history.identify && this.props.history.identify !== 'add-company')) {
                 this.props.history.push('/company/add-company')
+            } else if (user_info.is_company_added && (this.props.history.identify && this.props.history.identify !== 'add-company')) {
+                this.props.history.push('/projects')
             }
         }
 
@@ -33,13 +37,34 @@ class ProtectedRoute extends Component {
 
     render() {
         let Component = this.props.component
-        return (<div>
-            <Component />
+        let nav_options = [{
+            text: 'Projects',
+            route: 'projects'
+        }, {
+            text: 'Issues',
+            route: 'issues'
+        }]
+
+        return (<div className="app-container">
+            <div className="app-nav-container">
+                <SideBarNav
+                    menu={nav_options}
+                />
+            </div>
+
+            <div className="app-main-container">
+                <Header onLogout={e => this.props.logoutUser()} />
+                <div className="app-content-container">
+                <Component />
+                </div>
+            </div>
         </div>)
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ resetSettings }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ 
+    resetSettings,
+    logoutUser }, dispatch)
 
 const mapStateToProps = props => {
     let { authentication } = props

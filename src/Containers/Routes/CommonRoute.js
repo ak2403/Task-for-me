@@ -14,18 +14,21 @@ class CommonRoute extends Component {
     }
 
     shouldComponentUpdate = nextProps => {
-        let { is_signup_completed, user_info } = nextProps
+        let { is_signup_completed, user_info, is_login_completed } = nextProps
 
         if (is_signup_completed) {
             this.props.history.push('/login')
             this.props.resetSettings()
         }
-        console.log(user_info)
 
         if(user_info.hasOwnProperty('is_company_added')){
             if(!user_info.is_company_added){
                 this.props.history.push('/company/add-company')
             }
+        }
+
+        if(is_login_completed){
+            this.props.history.push('/dashboard')
         }
 
         return true
@@ -44,7 +47,8 @@ const mapStateToProps = props => {
     
     return {
         is_signup_completed: authentication.is_signup_completed,
-        user_info: authentication.user_info
+        user_info: authentication.user_info,
+        is_login_completed: authentication.is_login_completed
     }
 }
 

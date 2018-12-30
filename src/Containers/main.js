@@ -29,8 +29,8 @@ class MainRoute extends Component {
                         <ProtectedRoute exact path='/company/add-company' identify="add-company" component={AddCompany} />
 
                         <ProtectedRoute exact path='/dashboard' component={DashboardView} />
-                        {/* <ProtectedRoute exact path='/projects' component={ProjectView} />
-                        <ProtectedRoute exact path='/issues' component={IssueView} /> */}
+                        <ProtectedRoute exact path='/projects' component={ProjectView} />
+                        <ProtectedRoute exact path='/issues' component={IssueView} />
                     </Switch>
                 </div>
             </BrowserRouter>

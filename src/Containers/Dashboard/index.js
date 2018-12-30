@@ -6,7 +6,7 @@ import { logoutUser } from '../../Redux/Actions/authenticationActions'
 class DashboardView extends Component{
     render(){
         return <div>
-            <button onClick={this.props.logoutUser}>Logout</button>
+            Dashboard
         </div>
     }
 }

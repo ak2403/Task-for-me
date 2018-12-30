@@ -1,4 +1,4 @@
-import * as authenticationTypes from '../Types/authenticationTypes'
+import * as authenticationTypes from '../Types/authentication-types'
 
 let initialState = {
     is_login_completed: false,

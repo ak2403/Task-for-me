@@ -1,11 +1,13 @@
 import axios from 'axios'
-import { API_URL, userID, Authorization_header } from './config'
+import * as configAPI from './config'
 
-export const getProjects = () => {
-    console.log(Authorization_header, userID)
-    return axios.get(`${API_URL}/projects/${userID}`, Authorization_header)
+export const getProjectsCall = () => {
+    return axios.get(`${configAPI.API_URL}/projects/${configAPI.userID}`)
         .then(response => {
-            debugger
+            return {
+                status: 200,
+                data: response.data
+            }
         })
         .catch(err => {
             return {

@@ -51,9 +51,12 @@ export const loginUserCall = data => {
 }
 
 export const addProjectCall = data => {
-    return axios.post(`${configAPI.API_URL}/projects/add-project`, data)
-        .then(res => {
-            debugger
+    return axios.post(`${configAPI.API_URL}/projects/${configAPI.userID}/add-project`, data)
+        .then(response => {
+            return {
+                status: 200,
+                data: response.data
+            }
         })
         .catch(err => {
             debugger
