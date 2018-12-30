@@ -5,6 +5,7 @@ import { getProjects } from '../../../Redux/Actions/project-actions'
 
 class ProjectList extends Component {
     state = {
+        
     }
 
     componentDidMount() {
