@@ -62,3 +62,19 @@ export const addProjectCall = data => {
             debugger
         })
 }
+
+export const addIssueCall = data => {
+    data['created_by'] = configAPI.userID
+    return axios.post(`${configAPI.API_URL}/issues/${configAPI.userID}/add-issue`, data)
+    .then(response => {
+        return {
+            status: 200,
+            data: response.data
+        }
+    })
+    .catch(err => {
+        return {
+            status: 400
+        }
+    }) 
+}
