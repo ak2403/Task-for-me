@@ -17,6 +17,7 @@ export const signUpUser = data => {
     }
 }
 
+
 export const retrieveCall = () => {
     return async dispatch => {
         let getResponse = await configAPI.retrieveToken()
