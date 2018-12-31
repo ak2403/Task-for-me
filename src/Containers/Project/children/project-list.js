@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getProjects } from '../../../Redux/Actions/project-actions'
+import uuid from 'uuid/v4'
 
 class ProjectList extends Component {
     state = {
@@ -18,7 +19,7 @@ class ProjectList extends Component {
         return <div className="content-elements">
             {projects.length !== 0 ? <div className="project-list-container">
                 {projects.map(project => {
-                    return <div className="project-list">
+                    return <div key={uuid()} className="project-list">
                         <h4>{project.name}</h4>
                         </div>
                 })}

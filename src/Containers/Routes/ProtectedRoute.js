@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import SideBarNav from '../../Components/navigation/side-bar-nav'
@@ -24,19 +24,12 @@ class ProtectedRoute extends Component {
             this.props.resetSettings()
         }
 
-        if (user_info.hasOwnProperty('is_company_added')) {
-            if (!user_info.is_company_added && (this.props.history.identify && this.props.history.identify !== 'add-company')) {
-                this.props.history.push('/company/add-company')
-            } else if (user_info.is_company_added && (this.props.history.identify && this.props.history.identify !== 'add-company')) {
-                this.props.history.push('/projects')
-            }
-        }
-
         return true
     }
 
     render() {
         let Component = this.props.component
+        let { user_info } = this.props
         let nav_options = [{
             text: 'Projects',
             route: 'projects'
@@ -44,6 +37,12 @@ class ProtectedRoute extends Component {
             text: 'Issues',
             route: 'issues'
         }]
+
+        if(user_info.hasOwnProperty('is_company_added') && !user_info.is_company_added){
+            return <Redirect to='/company/add-company' />
+        }
+
+
 
         return (<div className="app-container">
             <div className="app-nav-container">
@@ -55,16 +54,17 @@ class ProtectedRoute extends Component {
             <div className="app-main-container">
                 <Header onLogout={e => this.props.logoutUser()} />
                 <div className="app-content-container">
-                <Component />
+                    <Component />
                 </div>
             </div>
         </div>)
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ 
+const mapDispatchToProps = dispatch => bindActionCreators({
     resetSettings,
-    logoutUser }, dispatch)
+    logoutUser
+}, dispatch)
 
 const mapStateToProps = props => {
     let { authentication } = props

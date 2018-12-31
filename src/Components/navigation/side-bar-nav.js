@@ -1,11 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import uuid from 'uuid/v4'
 
 const SideBarNav = (props) => {
     let { menu } = props
 
     let nav_DOM = menu.map(list => {
-        return <div><Link to={`/${list.route}`}>{list.text}</Link></div>
+        return <div key={uuid()}><Link to={`/${list.route}`}>{list.text}</Link></div>
     })
 
     return (<div className="rui-side-nav">

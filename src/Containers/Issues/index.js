@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Button from '../../Components/button'
 import Modal from '../../Components/modal'
-import IssueAddition from './children/IssueAddition'
+import IssueAddition from './children/issue-addition'
+import IssueList from './children/issue-list'
 
 class IssueComponent extends Component {
     state = {
@@ -18,7 +19,7 @@ class IssueComponent extends Component {
                 <h1>Issues</h1>
                 <Button className="add-issue" text="Add New Issue" onClick={this.toggleModal} />
             </div>
-            {/* <ProjectList /> */}
+            <IssueList />
 
             {toggleAdd ? <Modal title="Add Issue" content={<IssueAddition />} closeModal={this.toggleModal} /> : ''}
         </React.Fragment>

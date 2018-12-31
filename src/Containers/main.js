@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Switch, Route } from 'react-router-dom';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import CommonRoute from './Routes/CommonRoute';
@@ -26,7 +26,7 @@ class MainRoute extends Component {
                     <Switch>
                         <CommonRoute exact path='/login' component={LoginForm} />
                         <CommonRoute exact path='/signup' component={SignUp} />
-                        <ProtectedRoute exact path='/company/add-company' identify="add-company" component={AddCompany} />
+                        <Route exact path='/company/add-company' component={AddCompany} />
 
                         <ProtectedRoute exact path='/dashboard' component={DashboardView} />
                         <ProtectedRoute exact path='/projects' component={ProjectView} />

@@ -7,9 +7,10 @@ export const addIssue = data => {
     return async dispatch => {
         let getResponse = await postAPI.addIssueCall(data)
         if(getResponse.status === 200){
+            let getIssues = await getAPI.getIssueCall()
             dispatch({
                 type: issueTypes.ADDED_ISSUE,
-                payload: ''
+                payload: getIssues.data
             })
         }
     }
@@ -21,7 +22,7 @@ export const getIssues = () => {
         if(getResponse.status === 200){
             dispatch({
                 type: issueTypes.GET_ISSUE,
-                payload: ''
+                payload: getResponse.data
             })
         }
     }
