@@ -11,6 +11,8 @@ class IssueAddition extends Component {
     state = {
         issue_data: {
             title: '',
+            type: '',
+            version: '',
             description: '',
             status: '',
             project: '',
@@ -37,7 +39,7 @@ class IssueAddition extends Component {
 
     render() {
         let { projects } = this.props
-        
+
         let project_options = projects.map(project => {
             return {
                 name: project.name,
@@ -53,9 +55,25 @@ class IssueAddition extends Component {
             value: 'in-development'
         }]
 
+        let type_options = [{
+            name: 'Issue',
+            value: 'issue'
+        }, {
+            name: 'Requirement',
+            value: 'requirement'
+        }, {
+            name: 'Feature',
+            value: 'feature'
+        }]
+
         return <div>
 
             <form onSubmit={this.onSubmit}>
+                <Select
+                    text="Type"
+                    placeholder="Enter the type of the issue"
+                    options={type_options}
+                    onChange={e => this.changeValue('type', e.target.value)} />
                 <Input
                     type="text"
                     text="Title"
@@ -93,7 +111,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 const mapStateToProps = props => {
     let { project } = props
-    
+
     return {
         projects: project.projects
     }

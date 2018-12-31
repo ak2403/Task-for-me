@@ -7,7 +7,7 @@ const Modal = (props) => {
         <div className="rui-model-overlay" onClick={closeModal}></div>
         <div className="rui-modal-content">
             <h1>{title}</h1>
-            {content}
+            <div className="rui-modal-text">{content}</div>
         </div>
     </div>)
 }
