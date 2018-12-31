@@ -27,3 +27,9 @@ export const getIssues = () => {
         }
     }
 }
+
+export const resetSettings= () => {
+    return {
+        type: issueTypes.RESET_SETTINGS
+    }
+}

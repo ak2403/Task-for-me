@@ -71,3 +71,22 @@
       width: 100%;
       display: flex;
       overflow: auto; }
+
+.rui-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column; }
+  .rui-table .rui-table-header {
+    width: 100%;
+    display: flex; }
+    .rui-table .rui-table-header .rui-table-single-header {
+      flex: 1; }
+  .rui-table .rui-table-tbody {
+    width: 100%;
+    display: flex;
+    flex-direction: column; }
+    .rui-table .rui-table-tbody .rui-table-row {
+      width: 100%;
+      display: flex; }
+      .rui-table .rui-table-tbody .rui-table-row div {
+        flex: 1; }

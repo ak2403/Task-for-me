@@ -65,6 +65,7 @@ export const addProjectCall = data => {
 
 export const addIssueCall = data => {
     data['created_by'] = configAPI.userID
+    console.log(data)
     return axios.post(`${configAPI.API_URL}/issues/${configAPI.userID}/add-issue`, data)
     .then(response => {
         return {

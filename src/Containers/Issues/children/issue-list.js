@@ -12,8 +12,22 @@ class IssueList extends Component {
     render() {
         let { issues } = this.props
 
+        let columns = [{
+            text: 'Title',
+            dataIndex: 'title'
+        },{
+            text: 'Status',
+            dataIndex: 'status'
+        },{
+            text: 'Created By',
+            dataIndex: 'created_by',
+            render: data => <div>{data['created_by'].name || ''}</div>
+        }]
+
         return (<div>
-            <Table data={issues} />
+            <Table 
+                columns={columns}
+                data={issues} />
         </div>)
     }
 }
