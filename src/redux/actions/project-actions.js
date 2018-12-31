@@ -15,6 +15,7 @@ export const getProjects = () => {
     }
 }
 
+
 export const addProject = data => {
     return async dispatch => {
         let getResponse = await postAPI.addProjectCall(data)
