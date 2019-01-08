@@ -28,6 +28,18 @@ export const getIssues = () => {
     }
 }
 
+export const getIssueDetail = id => {
+    return async dispatch => {
+        let getResponse = await getAPI.getIssueDetail(id)
+        if(getResponse.status === 200){
+            dispatch({
+                type: issueTypes.GET_ISSUE_DETAIL,
+                payload: getResponse.data
+            })
+        }
+    }
+}
+
 export const resetSettings= () => {
     return {
         type: issueTypes.RESET_SETTINGS

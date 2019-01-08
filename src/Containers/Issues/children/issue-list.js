@@ -1,39 +1,50 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Table from '../../../Components/table'
-import { getIssues } from '../../../Redux/Actions/issue-actions'
+import { getIssues, getIssueDetail } from '../../../Redux/Actions/issue-actions'
 
 class IssueList extends Component {
     componentDidMount = () => {
         this.props.getIssues()
     }
 
+    rowClick = (data) => {
+        this.props.getIssueDetail(data._id)
+        this.props.history.push({
+            pathname: `/issue/${data._id}`,
+            state: { id: data._id }
+        })
+    }
+
     render() {
         let { issues } = this.props
 
         let columns = [{
-            text: 'Title',
+            title: 'Title',
             dataIndex: 'title'
-        },{
-            text: 'Status',
+        }, {
+            title: 'Status',
             dataIndex: 'status'
-        },{
-            text: 'Created By',
+        }, {
+            title: 'Created By',
             dataIndex: 'created_by',
             render: data => <div>{data['created_by'].name || ''}</div>
         }]
 
-        return (<div>
-            <Table 
+        return (<div className="table-layout">
+            <Table
                 columns={columns}
-                data={issues} />
+                data={issues}
+                onRowClick={this.rowClick} />
         </div>)
     }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    getIssues
+    getIssues,
+    getIssueDetail
 }, dispatch)
 
 const mapStateToProps = props => {
@@ -44,4 +55,4 @@ const mapStateToProps = props => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IssueList)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(IssueList))

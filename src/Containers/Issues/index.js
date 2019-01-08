@@ -36,7 +36,9 @@ class IssueComponent extends Component {
                 <h1>Issues</h1>
                 <Button className="add-issue" text="Add New Issue" onClick={this.toggleModal} />
             </div>
-            <IssueList />
+            <div className="content-elements">
+                <IssueList />
+            </div>
 
             {toggleAdd ? <Modal title="Add Issue" content={<IssueAddition />} closeModal={this.toggleModal} /> : ''}
         </React.Fragment>

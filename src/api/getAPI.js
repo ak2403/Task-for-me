@@ -30,3 +30,18 @@ export const getIssueCall = () => {
             }
         }) 
 }
+
+export const getIssueDetail = id => {
+    return axios.get(`${configAPI.API_URL}/issues/${configAPI.userID}/${id}`)
+        .then(response => {
+            return {
+                status: 200,
+                data: response.data
+            }
+        })
+        .catch(err => {
+            return {
+                status: 400
+            }
+        }) 
+}

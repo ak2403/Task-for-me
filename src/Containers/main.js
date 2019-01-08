@@ -10,6 +10,7 @@ import AddCompany from './Authentication/addCompany';
 import DashboardView from './Dashboard';
 import ProjectView from './Project';
 import IssueView from './Issues';
+import DetailView from './Issues/single-issue'
 import { retrieveCall } from '../Redux/Actions/authenticationActions';
 
 class MainRoute extends Component {
@@ -31,6 +32,7 @@ class MainRoute extends Component {
                         <ProtectedRoute exact path='/dashboard' component={DashboardView} />
                         <ProtectedRoute exact path='/projects' component={ProjectView} />
                         <ProtectedRoute exact path='/issues' component={IssueView} />
+                        <ProtectedRoute exact path='/issue/:issueID' component={DetailView} />
                         <Redirect to="/dashboard" />
                     </Switch>
                 </div>

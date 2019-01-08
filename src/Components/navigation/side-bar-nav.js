@@ -6,7 +6,7 @@ const SideBarNav = (props) => {
     let { menu } = props
 
     let nav_DOM = menu.map(list => {
-        return <div key={uuid()}><Link to={`/${list.route}`}>{list.text}</Link></div>
+        return <Link to={`/${list.route}`} key={uuid()}><div className="rui-nav">{list.text}</div></Link>
     })
 
     return (<div className="rui-side-nav">
