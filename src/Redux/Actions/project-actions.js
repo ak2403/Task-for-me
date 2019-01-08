@@ -28,3 +28,15 @@ export const addProject = data => {
         }
     }
 }
+
+export const getProjectDetail = id => {
+    return async dispatch => {
+        let getResponse = await getAPI.getProjectDetailCall(id)
+        if(getResponse.status === 200){
+            dispatch({
+                type: projectTypes.GET_PROJECT_DETAIL,
+                payload: getResponse.data
+            })
+        }
+    }
+}

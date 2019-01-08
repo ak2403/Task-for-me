@@ -89,3 +89,5 @@ body {
     display: flex; }
     .app-detail-container .app-split-column .app-detailed-layout {
       width: 70%; }
+    .app-detail-container .app-split-column .app-status-layout {
+      display: flex; }

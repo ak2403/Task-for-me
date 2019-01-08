@@ -1,10 +1,10 @@
 import React from 'react'
 
 const Select = (props) => {
-    let { text, options, onChange } = props
+    let { text, options, onChange, value } = props
 
     let option_DOM = options.map(list => {
-        return <option value={list.value}>{list.name}</option>
+        return <option value={list.value} selected={value === list.value ? 'selected' : ''}>{list.name}</option>
     })
 
     return (<div className="rui-form-element">

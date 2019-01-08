@@ -26,6 +26,12 @@ class SingleIssue extends Component {
                         <li>Description: {issue_details.description}</li>
                     </ul>
                 </div>
+                <div className="app-status-layout">
+                    <ul>
+                        <li>created by: {issue_details.created_by}</li>
+                        <li>assigned to: {issue_details.description}</li>
+                    </ul>
+                </div>
             </div>
         </div>)
     }
