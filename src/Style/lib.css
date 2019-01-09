@@ -149,3 +149,14 @@
 
 .rui-jumbotron {
   width: 100%; }
+
+.rui-form-seperate {
+  min-width: 500px;
+  width: 500px;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between; }
+  .rui-form-seperate label {
+    margin-right: 10px; }
+  .rui-form-seperate input {
+    margin-right: 0; }

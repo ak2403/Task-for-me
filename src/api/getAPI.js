@@ -60,3 +60,18 @@ export const getIssueDetail = id => {
             }
         }) 
 }
+
+export const getCompanyCall = () => {
+    return axios.get(`${configAPI.API_URL}/company/${configAPI.userID}`)
+        .then(response => {
+            return {
+                status: 200,
+                data: response.data
+            }
+        })
+        .catch(err => {
+            return {
+                status: 400
+            }
+        })
+}

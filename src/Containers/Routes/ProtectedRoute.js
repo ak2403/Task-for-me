@@ -36,6 +36,9 @@ class ProtectedRoute extends Component {
         }, {
             text: 'Issues',
             route: 'issues'
+        }, {
+            text: 'Manage',
+            route: 'manage_company'
         }]
 
         if(user_info.hasOwnProperty('is_company_added') && !user_info.is_company_added){
