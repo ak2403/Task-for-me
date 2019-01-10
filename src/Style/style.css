@@ -91,3 +91,17 @@ body {
       width: 70%; }
     .app-detail-container .app-split-column .app-status-layout {
       display: flex; }
+
+.app-panel-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 100%; }
+  .app-panel-container .panel-container {
+    width: 150px; }
+  .app-panel-container .panel-content-container {
+    display: flex;
+    flex: 1;
+    margin: 0 10px;
+    border-radius: 5px;
+    background-color: #fff; }

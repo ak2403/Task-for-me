@@ -34,7 +34,11 @@ class MainRoute extends Component {
                         <ProtectedRoute exact path='/projects' component={ProjectView} />
                         <ProtectedRoute exact path='/issues' component={IssueView} />
                         <ProtectedRoute exact path='/issue/:issueID' component={DetailView} />
-                        <ProtectedRoute exact path='/manage_company' component={ManageView} />
+
+                        <ProtectedRoute exact path='/manage_company' render={(props) => <ManageView {...props} view="general" />} />
+                        <ProtectedRoute exact path='/manage_company/developers' render={(props) => <ManageView {...props} view="developers" />} />
+                        <ProtectedRoute exact path='/manage_company/projects' render={(props) => <ManageView {...props} view="projects" />} />
+
                         <Redirect to="/dashboard" />
                     </Switch>
                 </div>

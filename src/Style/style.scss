@@ -105,3 +105,19 @@ body{
         }
     }
 }
+.app-panel-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    .panel-container{
+        width: 150px;
+    }
+    .panel-content-container{
+        display: flex;
+        flex: 1;
+        margin: 0 10px;
+        border-radius: 5px;
+        background-color: #fff;
+    }    
+}

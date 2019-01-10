@@ -65,17 +65,31 @@ export const addProjectCall = data => {
 
 export const addIssueCall = data => {
     data['created_by'] = configAPI.userID
-    console.log(data)
     return axios.post(`${configAPI.API_URL}/issues/${configAPI.userID}/add-issue`, data)
-    .then(response => {
-        return {
-            status: 200,
-            data: response.data
-        }
-    })
-    .catch(err => {
-        return {
-            status: 400
-        }
-    }) 
+        .then(response => {
+            return {
+                status: 200,
+                data: response.data
+            }
+        })
+        .catch(err => {
+            return {
+                status: 400
+            }
+        })
+}
+
+export const inviteMembersCall = members => {
+    return axios.post(`${configAPI.API_URL}/company/${configAPI.userID}/invite-members`, members)
+        .then(response => {
+            return {
+                status: 200,
+                data: response.data
+            }
+        })
+        .catch(err => {
+            return {
+                status: 400
+            }
+        })
 }

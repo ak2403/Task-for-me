@@ -28,7 +28,7 @@ class ProtectedRoute extends Component {
     }
 
     render() {
-        let Component = this.props.component
+        let Component = this.props.render || this.props.component
         let { user_info } = this.props
         let nav_options = [{
             text: 'Projects',

@@ -14,3 +14,9 @@ export const getCompany = () => {
         }
     }
 }
+
+export const inviteMembers = members => {
+    return async dispatch => {
+        let getResponse = await postAPI.inviteMembersCall()
+    }
+}
