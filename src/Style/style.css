@@ -21,7 +21,27 @@ body {
   background: #fafbfd; }
 
 .container-center {
-  width: 50%; }
+  width: 70%;
+  display: flex; }
+  .container-center .container-info {
+    flex: 1; }
+  .container-center .container-auth-form {
+    flex: 1.5; }
+    .container-center .container-auth-form .auth-forms {
+      width: 90%;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; }
+    .container-center .container-auth-form .auth-options {
+      width: 100%;
+      text-align: center; }
+      .container-center .container-auth-form .auth-options a {
+        display: block;
+        margin-bottom: 15px;
+        font-size: 13px;
+        color: #000; }
 
 .app-container {
   width: 100%;

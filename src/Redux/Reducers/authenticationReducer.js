@@ -3,6 +3,7 @@ import * as authenticationTypes from '../Types/authentication-types'
 let initialState = {
     is_login_completed: false,
     is_signup_completed: false,
+    companies: [],
     user_info: {},
     sign_user_id: '',
     is_user_logout: false,
@@ -15,6 +16,17 @@ const AuthenticationReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 is_signup_completed: true,
                 sign_user_id: action.payload.id || ''
+            })
+
+        case authenticationTypes.JOIN_COMPLETED:
+            return Object.assign({}, state, {
+                is_signup_completed: true,
+                sign_user_id: action.payload.id || ''
+            })
+
+        case authenticationTypes.GET_COMPANY_DEV:
+            return Object.assign({}, state, {
+                companies: action.payload || []
             })
 
         case authenticationTypes.LOGIN_DONE:

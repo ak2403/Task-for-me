@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import Validations from '../validations'
 import Input from '../../Components/input/text-input'
 import Button from '../../Components/button'
@@ -30,7 +30,7 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <form onSubmit={this.onSubmit}>
                     <Input
                         type="text"
@@ -46,7 +46,11 @@ class LoginForm extends Component {
 
                     <Button type="submit" text="Login" />
                 </form>
-            </div>
+                <div className="auth-options">
+                    <Link to="/signup">Create own team</Link>
+                    <Link to="/join">Join an existing team</Link>
+                </div>
+            </React.Fragment>
         )
     }
 }

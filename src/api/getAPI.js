@@ -43,7 +43,7 @@ export const getIssueCall = () => {
             return {
                 status: 400
             }
-        }) 
+        })
 }
 
 export const getIssueDetail = id => {
@@ -58,7 +58,7 @@ export const getIssueDetail = id => {
             return {
                 status: 400
             }
-        }) 
+        })
 }
 
 export const getCompanyCall = () => {
@@ -73,5 +73,27 @@ export const getCompanyCall = () => {
             return {
                 status: 400
             }
+        })
+}
+
+export const getCompanyDev = () => {
+    return axios.get(`${configAPI.API_URL}/company/dev`)
+        .then(response => {
+            return {
+                status: 200,
+                data: response.data
+            }
+        })
+        .catch(err => {
+            return {
+                status: 400
+            }
+        })
+}
+
+export const getMembersCall = projectID => {
+    return axios.get(`${configAPI.API_URL}/project/${projectID}/members`)
+        .then(response => {
+
         })
 }

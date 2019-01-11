@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Input from '../../../Components/input/text-input'
 import Select from '../../../Components/select'
 import Button from '../../../Components/button'
-import { getProjects } from '../../../Redux/Actions/project-actions'
+import { getProjects, getMembers } from '../../../Redux/Actions/project-actions'
 import { addIssue } from '../../../Redux/Actions/issue-actions'
 
 class IssueAddition extends Component {
@@ -16,7 +16,8 @@ class IssueAddition extends Component {
             description: '',
             status: '',
             project: '',
-            created_by: ''
+            created_by: '',
+            assignee: {}
         }
     }
 
@@ -39,7 +40,7 @@ class IssueAddition extends Component {
 
     render() {
         let { projects } = this.props
-
+console.log(projects)
         let project_options = projects.map(project => {
             return {
                 name: project.name,
@@ -98,6 +99,12 @@ class IssueAddition extends Component {
                     options={project_options}
                     onChange={e => this.changeValue('project', e.target.value)} />
 
+                <Select
+                    text="Assignee"
+                    placeholder="Select the assignee for the issue"
+                    options={project_options}
+                    onChange={e => this.changeValue('assignee', e.target.value)} />
+
                 <Button type="submit" text="Add Project" />
             </form>
         </div>
@@ -106,6 +113,7 @@ class IssueAddition extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     getProjects,
+    getMembers,
     addIssue
 }, dispatch)
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Select = (props) => {
     let { text, options, onChange, value } = props
@@ -12,14 +13,19 @@ const Select = (props) => {
             {text}
         </label>
         <select onChange={onChange}>
-            <option selected="true" disabled="disabled">Choose option</option>
+        {/* disabled="disabled" */}
+            <option selected="true">Choose option</option>
             {option_DOM}
         </select>
     </div >)
 }
 
-Select.defaultValue = {
+Select.defaultProps = {
     options: []
+};
+
+Select.propTypes = {
+    options: PropTypes.array
 }
 
 export default Select

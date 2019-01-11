@@ -15,6 +15,19 @@ export const signUpUserCall = data => {
         })
 }
 
+export const joinUserCall = data => {
+    return axios.post(`${configAPI.API_URL}/api/join`, data)
+        .then(response => {
+            return {
+                status: 200,
+                data: response.data
+            }
+        })
+        .catch(err => {
+            debugger
+        })
+}
+
 export const addUserCompanyCall = data => {
     return axios.post(`${configAPI.API_URL}/company/${configAPI.userID}/add-company`, data)
         .then(response => {

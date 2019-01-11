@@ -21,13 +21,13 @@ class CommonRoute extends Component {
             this.props.resetSettings()
         }
 
-        if(user_info.hasOwnProperty('is_company_added')){
-            if(!user_info.is_company_added){
+        if (user_info.hasOwnProperty('is_company_added')) {
+            if (!user_info.is_company_added) {
                 this.props.history.push('/company/add-company')
             }
         }
 
-        if(is_login_completed){
+        if (is_login_completed) {
             this.props.history.push('/dashboard')
         }
 
@@ -35,16 +35,24 @@ class CommonRoute extends Component {
     }
 
     render() {
-        let Component = this.props.component
+        let Component = this.props.render || this.props.component
+        
         return (<div className="container-center">
-            <Component />
+            <div className="container-info">
+
+            </div>
+            <div className="container-auth-form">
+                <div className="auth-forms">
+                    <Component />
+                </div>
+            </div>
         </div>)
     }
 }
 
 const mapStateToProps = props => {
     let { authentication } = props
-    
+
     return {
         is_signup_completed: authentication.is_signup_completed,
         user_info: authentication.user_info,

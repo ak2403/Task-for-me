@@ -26,15 +26,19 @@ class MainRoute extends Component {
             <BrowserRouter>
                 <div className="app-main">
                     <Switch>
-                        <CommonRoute exact path='/login' component={LoginForm} />
-                        <CommonRoute exact path='/signup' component={SignUp} />
+                        //Authentication routes
+                        <CommonRoute exact path='/login' render={(props) => <LoginForm {...props} view="login" />} />
+                        <CommonRoute exact path='/signup' render={(props) => <SignUp {...props} view="signup" />} />
+                        <CommonRoute exact path='/join' render={(props) => <SignUp {...props} view="join" />} />
                         <Route exact path='/company/add-company' component={AddCompany} />
 
+                        //Dashboard routes
                         <ProtectedRoute exact path='/dashboard' component={DashboardView} />
                         <ProtectedRoute exact path='/projects' component={ProjectView} />
                         <ProtectedRoute exact path='/issues' component={IssueView} />
                         <ProtectedRoute exact path='/issue/:issueID' component={DetailView} />
 
+                        //Manage Company routes
                         <ProtectedRoute exact path='/manage_company' render={(props) => <ManageView {...props} view="general" />} />
                         <ProtectedRoute exact path='/manage_company/developers' render={(props) => <ManageView {...props} view="developers" />} />
                         <ProtectedRoute exact path='/manage_company/projects' render={(props) => <ManageView {...props} view="projects" />} />

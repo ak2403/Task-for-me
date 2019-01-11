@@ -21,7 +21,32 @@ body{
     background: #fafbfd;
 }
 .container-center{
-    width: 50%;
+    width: 70%;
+    display: flex;
+    .container-info{
+        flex: 1;
+    }
+    .container-auth-form{
+        flex: 1.5;
+        .auth-forms{
+            width: 90%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .auth-options{
+            width: 100%;
+            text-align: center;
+            a{
+                display: block;
+                margin-bottom: 15px;
+                font-size: 13px;
+                color: #000;
+            }
+        }
+    }
 }
 .app-container{
     width: 100%;

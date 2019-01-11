@@ -1,24 +1,19 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import _ from 'lodash'
 import Validations from '../validations'
 import Input from '../../Components/input/text-input'
+import Select from '../../Components/select'
 import Button from '../../Components/button'
-import { signUpUser } from '../../Redux/Actions/authenticationActions'
+import { signUpUser, getCompany, joinUser } from '../../Redux/Actions/authenticationActions'
 
 class SignUp extends Component {
     state = {
         user_data: {
-            username: '',
-            useremail: '',
-            password: '',
-            confirm_password: ''
         },
         validations: {
-            username: false,
-            useremail: false,
-            password: false,
-            confirm_password: false
         }
     }
 
@@ -32,20 +27,68 @@ class SignUp extends Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        // this.props.history.push('/add-company')
-        this.props.signUpUser(this.state.user_data)
+        let { view } = this.props
+        if (view === 'join') {
+            this.props.joinUser(this.state.user_data)
+        } else {
+            this.props.signUpUser(this.state.user_data)
+        }
     }
 
     shouldComponentUpdate = nextProps => {
-        // if (nextProps.is_signup_completed) {
-        //     this.props.history.push('/add-company')
-        // }
         return true
     }
 
-    render() {
+    componentDidMount = () => {
+        let { view } = this.props
 
-        return <div>
+        if (view === 'signup') {
+            this.setState({
+                user_data: {
+                    username: '',
+                    useremail: '',
+                    password: '',
+                    confirm_password: ''
+                },
+                validations: {
+                    username: false,
+                    useremail: false,
+                    password: false,
+                    confirm_password: false
+                }
+            })
+        } else {
+            this.props.getCompany()
+            this.setState({
+                user_data: {
+                    username: '',
+                    useremail: '',
+                    password: '',
+                    confirm_password: '',
+                    company: ''
+                },
+                validations: {
+                    username: false,
+                    useremail: false,
+                    password: false,
+                    confirm_password: false,
+                    company: ''
+                }
+            })
+        }
+    }
+
+    render() {
+        let { view, companies } = this.props
+
+        const company_options = _.isEmpty(companies) ? [] : companies.map(list => {
+            return {
+                name: list.name,
+                value: list._id
+            }
+        })
+
+        return <React.Fragment>
             <form onSubmit={this.onSubmit}>
                 <Input
                     type="text"
@@ -71,18 +114,31 @@ class SignUp extends Component {
                     placeholder="Confirm your password"
                     onChange={e => this.changeValue('confirm_password', e.target.value)} />
 
+                {view === 'join' ? <Select
+                    text="Select Company"
+                    options={company_options}
+                    onChange={e => this.changeValue('company', e.target.value)} />
+                    : ''}
+
                 <Button type="submit" text="Signup" />
             </form>
-        </div>
+            <div className="auth-options">
+                <Link to="/login">Have an account? Login here</Link>
+            </div>
+        </React.Fragment>
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ signUpUser }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({
+    signUpUser,
+    joinUser,
+    getCompany
+}, dispatch)
 
 const mapStateToProps = props => {
     let { authentication } = props
     return {
-        is_signup_completed: authentication.is_signup_completed
+        companies: authentication.companies
     }
 }
 

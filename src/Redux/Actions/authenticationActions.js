@@ -1,4 +1,5 @@
 import * as authenticationTypes from '../Types/authentication-types'
+import * as getAPI from '../../api/getAPI'
 import * as postAPI from '../../api/postAPI'
 import * as deleteAPI from '../../api/deleteAPI'
 import * as configAPI from '../../api/config';
@@ -6,12 +7,26 @@ import * as configAPI from '../../api/config';
 export const signUpUser = data => {
     return async dispatch => {
         let getResponse = await postAPI.signUpUserCall(data)
-        if(getResponse.status === 200){
+        if (getResponse.status === 200) {
             dispatch({
                 type: authenticationTypes.SIGNUP_COMPLETED,
                 payload: getResponse.data
             })
-        }else{
+        } else {
+
+        }
+    }
+}
+
+export const joinUser = data => {
+    return async dispatch => {
+        let getResponse = await postAPI.joinUserCall(data)
+        if (getResponse.status === 200) {
+            dispatch({
+                type: authenticationTypes.JOIN_COMPLETED,
+                payload: getResponse.data
+            })
+        } else {
 
         }
     }
@@ -30,14 +45,14 @@ export const retrieveCall = () => {
 export const addUserCompany = data => {
     return async dispatch => {
         let getResponse = await postAPI.addUserCompanyCall(data)
-        if(getResponse.status === 200){
+        if (getResponse.status === 200) {
             let getUserDetails = await configAPI.retrieveToken(getResponse.token)
             dispatch({
                 type: authenticationTypes.ADDED_COMPANY,
                 payload: getResponse.data,
                 token_data: getResponse.token
             })
-        }else{
+        } else {
 
         }
     }
@@ -46,7 +61,7 @@ export const addUserCompany = data => {
 export const loginUser = data => {
     return async dispatch => {
         let getResponse = await postAPI.loginUserCall(data)
-        if(getResponse.status === 200){
+        if (getResponse.status === 200) {
             let getUserDetails = await configAPI.retrieveToken(getResponse.token)
             dispatch({
                 type: authenticationTypes.LOGIN_DONE,
@@ -60,16 +75,29 @@ export const loginUser = data => {
 export const logoutUser = () => {
     return async dispatch => {
         let getResponse = await deleteAPI.logoutUserCall()
-        if(getResponse.status === 200){
+        if (getResponse.status === 200) {
             dispatch({
                 type: authenticationTypes.LOGOUT
             })
-        }else{
+        } else {
             dispatch({
                 type: authenticationTypes.UNAUTHORIZATED
             })
         }
-    }   
+    }
+}
+
+//Just for development purpose
+export const getCompany = () => {
+    return async dispatch => {
+        let getResponse = await getAPI.getCompanyDev()
+        if (getResponse.status === 200) {
+            dispatch({
+                type: authenticationTypes.GET_COMPANY_DEV,
+                payload: getResponse.data
+            })
+        }
+    }
 }
 
 export const resetSettings = () => {

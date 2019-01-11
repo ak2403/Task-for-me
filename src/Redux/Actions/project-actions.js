@@ -40,3 +40,12 @@ export const getProjectDetail = id => {
         }
     }
 }
+
+export const getMembers = projectID => {
+    return async dispatch => {
+        let getResponse = await getAPI.getMembersCall(projectID)
+        if(getResponse.status === 200){
+
+        }
+    }
+}
