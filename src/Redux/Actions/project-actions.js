@@ -45,7 +45,10 @@ export const getMembers = projectID => {
     return async dispatch => {
         let getResponse = await getAPI.getMembersCall(projectID)
         if(getResponse.status === 200){
-
+            dispatch({
+                type: projectTypes.GET_MEMBERS,
+                payload: getResponse.data
+            })
         }
     }
 }

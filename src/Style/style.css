@@ -98,6 +98,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center; }
+  .project-list-container .add-project {
+    cursor: pointer;
+    border-style: dashed;
+    display: flex;
+    flex-direction: column; }
+    .project-list-container .add-project .icons {
+      margin-bottom: 15px; }
 
 .app-detail-container {
   width: 100%;

@@ -28,9 +28,17 @@ class IssueList extends Component {
             title: 'Status',
             dataIndex: 'status'
         }, {
+            title: 'Assignee',
+            dataIndex: 'assignee',
+            render: data => <div>{data['assignee'] ? data['assignee'].username : ''}</div>
+        }, {
             title: 'Created By',
             dataIndex: 'created_by',
             render: data => <div>{data['created_by'].name || ''}</div>
+        }, {
+            title: 'Created on',
+            dataIndex: 'created_on',
+            render: data => <div>{data['created_on']}</div>
         }]
 
         return (<div className="table-layout">

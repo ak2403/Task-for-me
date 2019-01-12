@@ -92,8 +92,16 @@ export const getCompanyDev = () => {
 }
 
 export const getMembersCall = projectID => {
-    return axios.get(`${configAPI.API_URL}/project/${projectID}/members`)
+    return axios.get(`${configAPI.API_URL}/projects/members`)
         .then(response => {
-
+            return {
+                status: 200,
+                data: response.data
+            }
+        })
+        .catch(err => {
+            return {
+                status: 400
+            }
         })
 }

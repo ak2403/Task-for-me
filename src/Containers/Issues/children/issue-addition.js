@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 import Input from '../../../Components/input/text-input'
 import Select from '../../../Components/select'
 import Button from '../../../Components/button'
@@ -17,13 +18,26 @@ class IssueAddition extends Component {
             status: '',
             project: '',
             created_by: '',
-            assignee: {}
+            assignee: { id: '', username: '' }
         }
     }
 
     changeValue = (name, value) => {
         let { issue_data } = this.state
         issue_data[name] = value
+        this.setState({
+            issue_data
+        })
+    }
+
+    changeAssignee = id => {
+        let { issue_data } = this.state
+        let { members } = this.props
+        let selected_member = _.filter(members, (member) => {
+            return member._id === id
+        })
+        issue_data.assignee.id = selected_member[0]._id
+        issue_data.assignee.username = selected_member[0].username
         this.setState({
             issue_data
         })
@@ -36,15 +50,23 @@ class IssueAddition extends Component {
 
     componentDidMount = () => {
         this.props.getProjects()
+        this.props.getMembers()
     }
 
     render() {
-        let { projects } = this.props
-console.log(projects)
+        let { projects, members } = this.props
+
         let project_options = projects.map(project => {
             return {
                 name: project.name,
                 value: project._id
+            }
+        })
+
+        let member_options = members.map(member => {
+            return {
+                name: member.username,
+                value: member._id
             }
         })
 
@@ -68,7 +90,6 @@ console.log(projects)
         }]
 
         return <div>
-
             <form onSubmit={this.onSubmit}>
                 <Select
                     text="Type"
@@ -102,8 +123,8 @@ console.log(projects)
                 <Select
                     text="Assignee"
                     placeholder="Select the assignee for the issue"
-                    options={project_options}
-                    onChange={e => this.changeValue('assignee', e.target.value)} />
+                    options={member_options}
+                    onChange={e => this.changeAssignee(e.target.value)} />
 
                 <Button type="submit" text="Add Project" />
             </form>
@@ -121,7 +142,8 @@ const mapStateToProps = props => {
     let { project } = props
 
     return {
-        projects: project.projects
+        projects: project.projects,
+        members: project.members
     }
 }
 

@@ -112,6 +112,15 @@ body{
         justify-content: center;
         align-items: center;
     }
+    .add-project{
+        cursor: pointer;
+        border-style: dashed;
+        display: flex;
+        flex-direction: column;
+        .icons{
+            margin-bottom: 15px;
+        }
+    }
 }
 .app-detail-container{
     width: 100%;

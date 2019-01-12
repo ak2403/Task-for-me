@@ -3,9 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Input from '../../Components/input/text-input'
 import Button from '../../Components/button'
-import Modal from '../../Components/modal'
 import ProjectList from './children/project-list'
-import ProjectAddition from './children/project-addition'
 
 class ProjectComponent extends Component {
     state = {
@@ -41,20 +39,13 @@ class ProjectComponent extends Component {
         this.props.addProject(this.state.project_data)
     }
 
-    toggleModal = () => this.setState({ toggleAdd: !this.state.toggleAdd })
-
     render() {
-        let { toggleAdd } = this.state
-        let { projects } = this.props
 
         return <React.Fragment>
             <div className="content-header">
                 <h1>Projects</h1>
-                <Button className="add-project" text="Add New Project" onClick={this.toggleModal} />
             </div>
             <ProjectList />
-
-            {toggleAdd ? <Modal title="Add Project" content={<ProjectAddition />} closeModal={this.toggleModal} /> : ''}
         </React.Fragment>
     }
 }
